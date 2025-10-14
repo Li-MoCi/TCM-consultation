@@ -1,0 +1,87 @@
+<view class="consult-container">
+  <!-- 面色类型选择 -->
+  <view class="color-list">
+    <text class="common-title">面色类型选择</text>
+    <view class="color-grid">
+      <view class="color-item {{selectedColor === 'red' ? 'active' : ''}}" bindtap="selectColor" data-color="red" data-type="红色 - 阴虚火旺">
+        <view class="color-dot" style="background-color: #d32f2f;"></view>
+        <text class="color-name">红色 - 阴虚火旺</text>
+      </view>
+      <view class="color-item {{selectedColor === 'black' ? 'active' : ''}}" bindtap="selectColor" data-color="black" data-type="黑色 - 肾虚寒盛">
+        <view class="color-dot" style="background-color: #3e2723;"></view>
+        <text class="color-name">黑色 - 肾虚寒盛</text>
+      </view>
+      <view class="color-item {{selectedColor === '#e1bee7' ? 'active' : ''}}" bindtap="selectColor" data-color="#e1bee7" data-type="白色 - 气血两虚">
+        <view class="color-dot" style="background-color: #e1bee7;"></view>
+        <text class="color-name">白色 - 气血两虚</text>
+      </view>
+      <view class="color-item {{selectedColor === 'yellow' ? 'active' : ''}}" bindtap="selectColor" data-color="yellow" data-type="黄色 - 脾虚湿盛">
+        <view class="color-dot" style="background-color: #ffd600;"></view>
+        <text class="color-name">黄色 - 脾虚湿盛</text>
+      </view>
+      <view class="color-item {{selectedColor === 'blue' ? 'active' : ''}}" bindtap="selectColor" data-color="blue" data-type="青色 - 寒凝血瘀">
+        <view class="color-dot" style="background-color: #1976d2;"></view>
+        <text class="color-name">青色 - 寒凝血瘀</text>
+      </view>
+      <view class="color-item {{selectedColor === 'normal' ? 'active' : ''}}" bindtap="selectColor" data-color="#8d6e63" data-type="正常面色 - 气血调和">
+        <view class="color-dot" style="background-color: #8d6e63;"></view>
+        <text class="color-name">正常面色 - 气血调和</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 智能咨询区域 -->
+  <view class="chat-section" wx:if="{{selectedColor}}">
+    <text class="common-title">AI智能咨询</text>
+    
+    <view class="chat-messages">
+      <view class="message message-system" wx:if="{{messages.length === 0}}">
+        欢迎咨询中医AI助手，我会根据您选择的面色类型为您提供健康建议
+      </view>
+      
+      <block wx:for="{{messages}}" wx:key="index">
+        <view class="message-row {{item.type === 'user' ? 'user' : ''}}">
+          <image 
+            src="{{item.type === 'user' ? '/images/user.png' : '/images/ai-icon.png'}}" 
+            class="message-avatar" 
+            mode="widthFix"
+          />
+          <view class="message {{item.type}}">
+            {{item.content}}
+          </view>
+        </view>
+      </block>
+      
+      <view class="message-row" wx:if="{{isLoading}}">
+        <image src="/images/ai-icon.png" class="message-avatar" mode="widthFix" />
+        <view class="message ai loading-message">
+          <view class="loading-indicator"></view>
+          <text>AI正在思考...</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="chat-input">
+      <input 
+        type="text" 
+        placeholder="请输入您的问题..." 
+        bindinput="inputQuestion" 
+        value="{{question}}"
+        bindconfirm="sendQuestion"
+      />
+      <button 
+        type="button" 
+        class="send-btn" 
+        bindtap="sendQuestion" 
+        disabled="{{!question.trim() || isLoading}}">
+        发送
+      </button>
+    </view>
+  </view>
+  
+  <!-- 未选择提示 -->
+  <view class="hint" wx:if="{{!selectedColor}}">
+    <image src="/images/consult-hint.png" class="hint-icon" mode="widthFix" />
+    <text class="hint-text">请先选择面色类型，\nAI助手将为您提供针对性的健康咨询服务</text>
+  </view>
+</view>

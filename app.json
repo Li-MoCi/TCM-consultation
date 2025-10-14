@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/imageAnalysis/imageAnalysis",
+    "pages/intelligentConsult/intelligentConsult",
+    "pages/demo/demo",
+    "pages/reportPreview/reportPreview"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-selected.png"
+      },
+      {
+        "pagePath": "pages/imageAnalysis/imageAnalysis",
+        "text": "图片分析",
+        "iconPath": "images/pic.png",
+        "selectedIconPath": "images/pic-selected.png"
+      },
+      {
+        "pagePath": "pages/intelligentConsult/intelligentConsult",
+        "text": "AI对话",
+        "iconPath": "images/agent.png",
+        "selectedIconPath": "images/agent-selected.png"
+      },
+      {
+        "pagePath": "pages/demo/demo",
+        "text": "demo",
+        "iconPath": "images/agent.png",
+        "selectedIconPath": "images/agent-selected.png"
+      },
+      {
+        "pagePath": "pages/reportPreview/reportPreview",
+        "text": "报告",
+        "iconPath": "images/report.png",
+        "selectedIconPath": "images/report-selected.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

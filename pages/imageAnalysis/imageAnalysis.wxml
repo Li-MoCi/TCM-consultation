@@ -1,0 +1,107 @@
+<view class="page-container">
+  <!-- 顶部标题区域
+  <view class="header">
+    <view class="logo-area">
+      <image src="/images/logo.png" class="logo" />
+      <text class="app-name">AI面部健康分析</text>
+    </view>
+    <text class="app-description">基于中医面诊原理的AI智能分析</text>
+  </view> -->
+
+  <!-- 上传区域 -->
+  <view class="section card">
+    <view class="section-header">
+      <image src="/images/camera.png" class="section-icon" />
+      <text class="section-title">上传面部照片</text>
+    </view>
+    <view class="upload-area {{imageUrl ? 'has-image' : ''}}" bindtap="chooseImage">
+      <view class="upload-content" wx:if="{{!imageUrl}}">
+        <image src="/images/upload.png" class="upload-icon" />
+        <text class="upload-tip">点击或拖拽图片到这里</text>
+        <text class="format-tip">支持 JPG、PNG、GIF 格式，最大 16MB</text>
+      </view>
+      <view class="preview-container" wx:if="{{imageUrl}}">
+        <image src="{{imageUrl}}" class="preview-image" mode="aspectFit" />
+        <view class="preview-overlay">
+          <image src="/images/change.png" class="change-icon" />
+          <text class="change-text">更换图片</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 患者信息表单 -->
+  <view class="section card">
+    <view class="section-header">
+      <image src="/images/user.png" class="section-icon" />
+      <text class="section-title">患者信息</text>
+    </view>
+    <form class="patient-form">
+      <view class="form-item">
+        <label class="form-label">姓名</label>
+        <input type="text" placeholder="请输入姓名" class="form-input" value="{{name}}" bindinput="bindNameInput" />
+      </view>
+      <view class="form-item">
+        <label class="form-label">年龄</label>
+        <input type="number" placeholder="请输入年龄" class="form-input" value="{{age}}" bindinput="bindAgeInput" />
+      </view>
+      <view class="form-item">
+        <label class="form-label">性别</label>
+        <picker class="gender-picker" range="{{['男','女','其他']}}" value="{{genderIndex}}" bindchange="bindGenderChange">
+          <view class="picker-display {{genderIndex !== null ? 'selected' : ''}}">
+            {{genderIndex !== null ? ['男','女','其他'][genderIndex] : '请选择性别'}}
+            <image src="/images/arrow-down.png" class="arrow-icon" />
+          </view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <label class="form-label">联系电话（可选）</label>
+        <input type="tel" placeholder="请输入联系电话" class="form-input" value="{{phone}}" bindinput="bindPhoneInput" />
+      </view>
+      <button class="submit-btn {{loading ? 'disabled' : ''}}" type="primary" bindtap="startAnalysis" disabled="{{loading || !imageUrl}}">
+        <text class="btn-text">{{loading ? '分析中...' : '开始分析'}}</text>
+        <image src="/images/analysis.png" class="btn-icon" wx:if="{{!loading}}" />
+        <image src="/images/loading.png" class="btn-icon loading" wx:if="{{loading}}" />
+      </button>
+    </form>
+  </view>
+
+  <!-- 分析结果（默认隐藏，上传后显示） -->
+  <view class="section card result-section" wx:if="{{analysisResult}}">
+    <view class="section-header">
+      <image src="/images/result.png" class="section-icon" />
+      <text class="section-title">分析结果</text>
+    </view>
+    <view class="result-card">
+      <view class="result-header">
+        <view class="color-tag" style="background-color: {{resultColor}};"></view>
+        <text class="result-type">{{resultType}}</text>
+        <view class="confidence-level">
+          <text class="confidence-text">置信度</text>
+          <text class="confidence-value">{{confidence}}%</text>
+        </view>
+      </view>
+      <view class="result-content">
+        <text class="result-desc">{{resultDesc}}</text>
+        <view class="result-meta">
+          <view class="meta-item">
+            <image src="/images/time.png" class="meta-icon" />
+            <text class="meta-text">分析时间：{{analysisTime}}</text>
+          </view>
+          <view class="meta-item">
+            <image src="/images/id.png" class="meta-icon" />
+            <text class="meta-text">图像ID：{{imageId}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="result-footer">
+        <image src="/images/tips.png" class="tips-icon" />
+        <text class="tips-text">温馨提示：此分析结果仅供参考，如有健康问题请咨询专业中医师。</text>
+      </view>
+      <view class="result-actions">
+        <button class="action-btn secondary" bindtap="reanalyze">重新分析</button>
+        <button class="action-btn primary" open-type="share">分享结果</button>
+      </view>
+    </view>
+  </view>
+</view>

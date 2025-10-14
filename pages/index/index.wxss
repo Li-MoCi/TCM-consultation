@@ -1,0 +1,444 @@
+/* 全局滚动容器 */
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+/* 淡入动画：从下往上+透明度变化 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 通用区块样式 */
+.section {
+  padding: 40rpx 30rpx;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  text-align: center;
+  display: block;
+}
+
+.section-desc {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 44rpx;
+  text-align: center;
+  margin-bottom: 30rpx;
+  display: block;
+}
+
+/* 头部区块 */
+.header-section {
+  text-align: center;
+  padding: 80rpx 30rpx;
+  background: linear-gradient(135deg, #673ab7, #e91e63);
+  color: #fff;
+  box-shadow: none;
+}
+
+.header-section .title {
+  font-size: 48rpx;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.header-section .subtitle {
+  font-size: 32rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.9;
+  display: block;
+}
+
+.header-section .desc {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800rpx;
+  margin: 0 auto 40rpx;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 40rpx 0;
+}
+
+.stat-item {
+  margin: 10rpx;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.enter-btn {
+  display: inline-block;
+  padding: 20rpx 40rpx;
+  background-color: #fff;
+  color: #e91e63;
+  font-weight: bold;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 什么是中医望诊 */
+.content-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-image {
+  width: 600rpx;
+  height: auto;
+  border-radius: 12rpx;
+  margin-right: 40rpx;
+}
+
+.concepts {
+  flex: 1;
+  min-width: 300rpx;
+}
+
+.concept-item {
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 12rpx;
+}
+
+.concept-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  display: block;
+  color: #5d4037;
+}
+
+.concept-desc {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 五色主病 */
+.colors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300rpx, 1fr));
+  gap: 20rpx;
+  justify-content: center;
+}
+
+.color-card {
+  padding: 20rpx;
+  border-radius: 12rpx;
+  background-color: #f9f9f9;
+}
+
+.color-dot {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+}
+
+.red { background-color: #ff5252; }
+.black { background-color: #212121; }
+.white { background-color: #e1bee7; }
+.yellow { background-color: #ffd54f; }
+.cyan { background-color: #4dd0e1; }
+
+.color-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 6rpx;
+  display: block;
+  color: #333;
+}
+
+.color-type {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.color-desc, .color-symptom {
+  font-size: 22rpx;
+  color: #666;
+  line-height: 32rpx;
+}
+
+.color-symptom {
+  margin-top: 10rpx;
+  font-size: 20rpx;
+  color: #888;
+}
+
+/* 千年传承-时间轴 */
+.timeline {
+  position: relative;
+  padding-left: 40rpx;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 20rpx;
+  top: 0;
+  bottom: 0;
+  width: 4rpx;
+  background-color: #e91e63;
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 40rpx;
+  position: relative;
+}
+
+.timeline-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: #e91e63;
+  border: 6rpx solid #fff;
+  box-shadow: 0 0 0 2rpx #e91e63;
+  position: absolute;
+  left: -10rpx;
+  top: 0;
+}
+
+.timeline-content {
+  flex: 1;
+  margin-left: 30rpx;
+  padding: 20rpx;
+  background-color: #f9f9f9;
+  border-radius: 12rpx;
+}
+
+.timeline-period {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 6rpx;
+}
+
+.timeline-time {
+  font-size: 22rpx;
+  color: #888;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.timeline-desc {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 36rpx;
+}
+
+/* 科技融合 */
+.tech-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 40rpx;
+}
+
+.tech-item {
+  width: 300rpx;
+  text-align: center;
+  margin: 10rpx;
+}
+
+.tech-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.tech-title {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.tech-desc {
+  font-size: 22rpx;
+  color: #666;
+  line-height: 32rpx;
+}
+
+.tech-advantages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.advantages-col {
+  flex: 1;
+  min-width: 300rpx;
+  margin-right: 20rpx;
+}
+
+.advantages-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.advantage-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.advantage-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.tech-metrics {
+  flex: 1;
+  min-width: 300rpx;
+  background-color: #f9f9f9;
+  border-radius: 12rpx;
+  padding: 20rpx;
+}
+
+.metric-item {
+  margin-bottom: 20rpx;
+}
+
+.metric-name {
+  font-size: 24rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.metric-bar {
+  height: 12rpx;
+  background-color: #eee;
+  border-radius: 6rpx;
+  margin-bottom: 6rpx;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 6rpx;
+}
+
+.green { background-color: #4caf50; }
+.blue { background-color: #2196f3; }
+.purple { background-color: #9c27b0; }
+
+.metric-value {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 行动号召 */
+.cta-section {
+  text-align: center;
+  background: linear-gradient(135deg, #fcc49a, #f3d9c5);
+  color: #000000;
+  padding: 60rpx 30rpx;
+}
+
+.cta-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.cta-desc {
+  font-size: 28rpx;
+  opacity: 0.9;
+  max-width: 800rpx;
+  margin: 0 auto 40rpx;
+  line-height: 44rpx;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40rpx;
+}
+
+.step-item {
+  margin: 0 20rpx;
+  text-align: center;
+}
+
+.step-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.step-num {
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  display: block;
+}
+
+.step-desc {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 24rpx 50rpx;
+  background-color: #fff;
+  color: #e91e63;
+  font-weight: bold;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  margin-bottom: 30rpx;
+}
+
+.back-to-top {
+  font-size: 24rpx;
+  opacity: 0.8;
+  cursor: pointer;
+}

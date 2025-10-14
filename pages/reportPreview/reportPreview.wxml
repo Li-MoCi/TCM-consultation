@@ -1,0 +1,102 @@
+<view class="report-container">
+  <text class="common-title">检测报告管理</text>
+  <text class="sub-title">查看和管理您的中医望诊检测报告</text>
+  
+  <!-- 报告列表 -->
+  <view class="report-list">
+    <block wx:if="{{reports.length > 0}}">
+      <block wx:for="{{reports}}" wx:key="id">
+        <view class="report-item {{currentReportId === item.id ? 'active' : ''}}" bindtap="selectReport" data-id="{{item.id}}">
+          <view class="report-info">
+            <text class="report-date">{{item.date}}</text>
+            <text class="report-name">
+              <span class="report-color" style="background-color: {{item.color}};"></span>
+              {{item.name}}的检测报告
+            </text>
+          </view>
+          <view class="report-actions">
+            <view class="report-btn view-btn" bindtap="viewReport" data-id="{{item.id}}">查看</view>
+            <view class="report-btn download-btn" bindtap="downloadReport" data-id="{{item.id}}">下载</view>
+            <view class="report-btn delete-btn" bindtap="deleteReport" data-id="{{item.id}}">删除</view>
+          </view>
+        </view>
+      </block>
+    </block>
+    
+    <view class="no-report" wx:if="{{reports.length === 0}}">
+      <image src="/images/no-report.png" class="no-report-icon" mode="widthFix" />
+      <text class="no-report-text">您暂无检测报告\n快去进行面色分析生成您的第一份报告吧</text>
+      <navigator url="/pages/detect/detect" class="go-detect-btn" open-type="switchTab">立即检测</navigator>
+    </view>
+  </view>
+  
+  <!-- 报告详情 -->
+  <view wx:if="{{currentReport && reports.length > 0}}">
+    <text class="common-title">报告详情</text>
+    <view class="report-card">
+      <view class="report-header">
+        <text class="report-title">中医智能望诊检测报告</text>
+        <text class="report-time">生成时间：{{currentReport.date}}</text>
+      </view>
+      
+      <view class="report-content">
+        <view class="result-item">
+          <view class="color-dot" style="background-color: {{currentReport.color}};"></view>
+          <text class="result-type">{{currentReport.type}}</text>
+        </view>
+        
+        <text class="section-title">一、基本信息</text>
+        <view class="info-grid">
+          <view class="info-item">
+            <text class="info-label">检测时间：</text>{{currentReport.detectTime}}
+          </view>
+          <view class="info-item">
+            <text class="info-label">报告编号：</text>{{currentReport.reportId}}
+          </view>
+          <view class="info-item">
+            <text class="info-label">姓名：</text>{{currentReport.name}}
+          </view>
+          <view class="info-item">
+            <text class="info-label">年龄：</text>{{currentReport.age}}岁
+          </view>
+          <view class="info-item">
+            <text class="info-label">性别：</text>{{currentReport.gender}}
+          </view>
+          <view class="info-item">
+            <text class="info-label">置信度：</text>{{currentReport.confidence}}
+          </view>
+        </view>
+        
+        <text class="section-title">二、检测结果</text>
+        <view class="suggest-content">
+          <p>面色类型：{{currentReport.type}}</p>
+          <p>中医辨证：{{currentReport.analysis}}</p>
+        </view>
+        
+        <text class="section-title">三、健康建议</text>
+        <view class="suggest-content">
+          <p>{{currentReport.suggestions.diet}}</p>
+          <p>{{currentReport.suggestions.lifestyle}}</p>
+          <p>{{currentReport.suggestions.medicine}}</p>
+        </view>
+        
+        <text class="section-title">四、注意事项</text>
+        <view class="suggest-content">
+          <p>1. 本报告基于AI图像识别技术和中医理论生成，仅供参考，不构成诊断依据。</p>
+          <p>2. 如出现明显不适症状，请及时前往正规医疗机构就诊。</p>
+          <p>3. 中医调理需要循序渐进，建议在专业中医师指导下进行。</p>
+          <p>4. 定期复查有助于跟踪健康状况变化，建议每2-4周检测一次。</p>
+        </view>
+        
+        <view class="report-footer">
+          <text>本报告由中医AI智能望诊系统生成 | 技术支持：400-123-4567</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="action-buttons">
+      <button type="button" class="action-btn download-report" bindtap="downloadCurrentReport">下载报告</button>
+      <button type="button" class="action-btn share-report" bindtap="shareReport">分享报告</button>
+    </view>
+  </view>
+</view>
