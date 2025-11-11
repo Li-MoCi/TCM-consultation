@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/imageAnalysis/imageAnalysis",
     "pages/intelligentConsult/intelligentConsult",
-    "pages/demo/demo",
     "pages/reportPreview/reportPreview"
   ],
   "window": {
@@ -28,12 +27,6 @@
       {
         "pagePath": "pages/intelligentConsult/intelligentConsult",
         "text": "AI对话",
-        "iconPath": "images/agent.png",
-        "selectedIconPath": "images/agent-selected.png"
-      },
-      {
-        "pagePath": "pages/demo/demo",
-        "text": "demo",
         "iconPath": "images/agent.png",
         "selectedIconPath": "images/agent-selected.png"
       },
